@@ -13,4 +13,4 @@ import os
 os.chdir("/Users/obinnadinneya/Desktop/ds_salary_proj")
 df = pd.read_csv('Data scientist.csv')
 
-df = pd.read_csv('Data scientist.csv')
+df2 = pd.read_csv('Data scientist_2.csv')
