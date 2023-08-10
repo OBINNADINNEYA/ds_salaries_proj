@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('Data scientist.csv')
 
 #salary estimate
+#remove rows with no salary estimates
 df = df.dropna(subset=['salary estimate'])
 salary = df['salary estimate'].apply(lambda x : x.split('/')[0])
 salary
@@ -75,6 +76,4 @@ df['SAS_yn'].value_counts()
 df_out = df.drop(columns='Unnamed: 0', axis =1)
 df_out
 
-#remove rows with no salary estimates
 
-df.info()
