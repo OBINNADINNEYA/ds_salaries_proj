@@ -109,7 +109,7 @@ random_grid = {'n_estimators': n_estimators,
                'bootstrap': bootstrap}
 print(random_grid)
 
-rf_random = RandomizedSearchCV(rfc,param_distributions = random_grid, n_iter = 100, cv = 5, verbose=2, n_jobs= -1, scoring='neg_mean_absolute_error')
+rf_random = RandomizedSearchCV(rfc,param_distributions = random_grid, n_iter = 100, cv = 5, verbose=2, n_jobs= -1, scoring='neg_mean_absolute_error', random_state=42)
 # Fit the random search model
 rf_random.fit(X_train,y_train)
 
