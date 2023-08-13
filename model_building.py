@@ -11,6 +11,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+np.random.seed(42)
+
+
 df = pd.read_csv('eda_data.csv')
 df.columns
 
@@ -75,47 +78,21 @@ df_err[df_err.error == max(df_err.error)]
 
 
 
-#randomn randomn forrest
-from sklearn.ensemble import RandomForestClassifier
-rfc =RandomForestClassifier()
+# random forest 
+from sklearn.ensemble import RandomForestRegressor
+rf = RandomForestRegressor()
 
-np.mean(cross_val_score(rfc, X_train,y_train, scoring='neg_mean_absolute_error'))
+np.mean(cross_val_score(rf,X_train,y_train,scoring = 'neg_mean_absolute_error'))
 
-#Use grid search to tune this 
+# tune models GridsearchCV 
 from sklearn.model_selection import GridSearchCV
+parameters = {'n_estimators':range(10,300,10), 'criterion':['absolute_error'], 'max_features':('sqrt','log2')}
 
+gs = GridSearchCV(rf,parameters,scoring='neg_mean_absolute_error',cv=5)
+gs.fit(X_train,y_train)
 
-#We will do a randomized gridsearch
-from sklearn.model_selection import RandomizedSearchCV
-# Number of trees in random forest
-n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
-# Number of features to consider at every split
-max_features = ['auto', 'sqrt', 'log2']
-# Maximum number of levels in tree
-max_depth = [int(x) for x in np.linspace(10, 110, num = 11)]
-max_depth.append(None)
-# Minimum number of samples required to split a node
-min_samples_split = [2, 5, 10]
-# Minimum number of samples required at each leaf node
-min_samples_leaf = [1, 2, 4]
-# Method of selecting samples for training each tree
-bootstrap = [True, False]
-# Create the random grid
-random_grid = {'n_estimators': n_estimators,
-               'max_features': max_features,
-               'max_depth': max_depth,
-               'min_samples_split': min_samples_split,
-               'min_samples_leaf': min_samples_leaf,
-               'bootstrap': bootstrap}
-print(random_grid)
-
-rf_random = RandomizedSearchCV(rfc,param_distributions = random_grid, n_iter = 100, cv = 5, verbose=2, n_jobs= -1, scoring='neg_mean_absolute_error', random_state=42)
-# Fit the random search model
-rf_random.fit(X_train,y_train)
-
-#Best estimator and score (slight improvement)
-rf_random.best_estimator_
-rf_random.best_score_
+gs.best_score_
+gs.best_estimator_
 
 
 #LETS WORK ON TEST SET DATA NOW FOR EACH MODEL
@@ -123,7 +100,7 @@ rf_random.best_score_
 #PREDICTIONS
 tpred_lm = lmodel.predict(X_test)
 tpred_lm_l = lm_l.predict(X_test)
-tpred_rfc = rf_random.predict(X_test)
+tpred_rfc = gs.predict(X_test)
 
 
 pred_dict = {'tpred_lm' : tpred_lm,'tpred_lm_l': tpred_lm_l,'tpred_rfc':tpred_rfc}
@@ -156,8 +133,17 @@ print(f'MSE: {MSE}')
 print(f'RMSE: {RMSE}')
 print(f'R^2: {R2}')
 
-#Better Rsquared value error is stilll around $2600
+#BLets pickle the model we will use 
+import pickle
+pickl = {'model': gs.best_estimator_}
+pickle.dump( pickl, open( 'model_file' + ".p", "wb" ) )
 
+file_name = "model_file.p"
+with open(file_name, 'rb') as pickled:
+    data = pickle.load(pickled)
+    model = data['model']
+
+model.predict(np.array(list(X_test.iloc[1,:])).reshape(1,-1))[0]
 
 
 

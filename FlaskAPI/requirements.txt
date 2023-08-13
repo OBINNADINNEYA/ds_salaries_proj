@@ -1,0 +1,19 @@
+Bottleneck @ file:///Users/cbousseau/work/recipes/ci_py311/bottleneck_1677925122241/work
+click @ file:///Users/cbousseau/work/recipes/ci_py311/click_1677920889666/work
+Flask @ file:///Users/cbousseau/work/recipes/ci_py311/flask_1677937489551/work
+gunicorn @ file:///Users/cbousseau/work/recipes/ci_py311/gunicorn_1677972141564/work
+install==1.3.5
+itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+Jinja2 @ file:///Users/cbousseau/work/recipes/ci_py311/jinja2_1677916113134/work
+joblib @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_a357ltg47g/croot/joblib_1685113093574/work
+MarkupSafe @ file:///Users/cbousseau/work/recipes/ci_py311/markupsafe_1677914270710/work
+numexpr @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_76yyu1p9jk/croot/numexpr_1683221830860/work
+numpy @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_a19y8c22jc/croot/numpy_and_numpy_base_1691091616945/work
+pandas==1.5.3
+python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
+pytz @ file:///Users/cbousseau/work/recipes/ci_py311/pytz_1677920497588/work
+scikit-learn==1.3.0
+scipy @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_66h0hq6x34/croot/scipy_1691606685645/work/dist/scipy-1.11.1-cp311-cp311-macosx_11_0_arm64.whl#sha256=71799faffb4c30e05c1b325dec4d248cd6284bac1b90cb105990f1115c38b4ce
+six @ file:///tmp/build/80754af9/six_1644875935023/work
+threadpoolctl @ file:///Users/ktietz/demo/mc3/conda-bld/threadpoolctl_1629802263681/work
+Werkzeug @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_fc9kcczuwd/croot/werkzeug_1679489745296/work
